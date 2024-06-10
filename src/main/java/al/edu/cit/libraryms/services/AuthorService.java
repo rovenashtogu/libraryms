@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class AuthorService {
+
     @Autowired
     private AuthorRepository authorRepository;
 
@@ -20,6 +21,10 @@ public class AuthorService {
         return authorRepository.findById(id).orElse(null);
     }
 
+    public Author findByName(String name) {
+        return authorRepository.findByName(name);
+    }
+
     public void save(Author author) {
         authorRepository.save(author);
     }
@@ -28,4 +33,3 @@ public class AuthorService {
         authorRepository.deleteById(id);
     }
 }
-
