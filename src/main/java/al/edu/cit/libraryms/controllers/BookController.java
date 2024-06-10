@@ -53,13 +53,24 @@ public class BookController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editBookForm(@PathVariable Long id, Model model) {
+    public String editBookForm(@PathVariable Long id, Model model){
+        List<Author> authors = authorService.findAll();
+        model.addAttribute("authors", authors);
         model.addAttribute("book", bookService.findById(id));
         return "editBook";
     }
 
     @PostMapping("/edit")
-    public String editBook(@ModelAttribute Book book) {
+    public String editBook(@RequestParam("id") Long id, @RequestParam("title") String title, @RequestParam("author") String authorName) {
+        Author author = authorService.findByName(authorName);
+        if (author == null) {
+            author = new Author();
+            author.setName(authorName);
+            authorService.save(author);
+        }
+        Book book = bookService.findById(id);
+        book.setTitle(title);
+        book.setAuthor(author);
         bookService.save(book);
         return "redirect:/books";
     }

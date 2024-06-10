@@ -6,13 +6,22 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Edit Borrower</h1>
-<form th:action="@{/borrowers/edit}" th:object="${borrower}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}">
-    <br>
-    <button type="submit">Edit Borrower</button>
-</form>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/borrowers}">Borrowers</a>
+        <a th:href="@{/borrowers/add}">Add Borrower</a>
+    </nav>
+    <div class="container">
+        <h1>Edit Borrower</h1>
+        <form th:action="@{/borrowers/edit}" th:object="${borrower}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required>
+            <input type="submit" value="Update Borrower">
+        </form>
+    </div>
 </body>
 </html>

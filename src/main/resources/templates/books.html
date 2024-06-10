@@ -6,24 +6,34 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Books</h1>
-<a href="/books/add">Add Book</a>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Actions</th>
-    </tr>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.id}"></td>
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.author}"></td>
-        <td>
-            <a th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a>
-            <a th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a>
-        </td>
-    </tr>
-</table>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/books/add}">Add Book</a>
+    </nav>
+    <div class="container">
+        <h1>Books</h1>
+        <a th:href="@{/books/add}" class="button">Add Book</a>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author.name}"></td>
+                <td>
+                    <a th:href="@{/books/edit/{id}(id=${book.id})}" class="button">Edit</a>
+                    <a th:href="@{/books/delete/{id}(id=${book.id})}" class="button">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

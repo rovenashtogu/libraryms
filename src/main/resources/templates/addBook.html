@@ -12,7 +12,7 @@
     <nav>
         <a th:href="@{/}">Home</a>
         <a th:href="@{/books}">Books</a>
-        <a th:href="@{/addBook}">Add Book</a>
+        <a th:href="@{/books/add}">Add Book</a>
     </nav>
     <div class="container">
         <h1>Add Book</h1>
@@ -24,9 +24,6 @@
             <select id="author" name="author" required>
                 <option th:each="author : ${authors}" th:value="${author.name}" th:text="${author.name}"></option>
             </select>
-            
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required></textarea>
             
             <input type="submit" value="Add Book">
         </form>

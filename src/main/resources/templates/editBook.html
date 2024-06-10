@@ -6,16 +6,28 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Edit Book</h1>
-<form th:action="@{/books/edit}" th:object="${book}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" th:field="*{title}">
-    <br>
-    <label for="author">Author:</label>
-    <input type="text" id="author" name="author" th:field="*{author}">
-    <br>
-    <button type="submit">Edit Book</button>
-</form>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/books/add}">Add Book</a>
+    </nav>
+    <div class="container">
+        <h1>Edit Book</h1>
+        <form th:action="@{/books/edit}" method="post">
+            <input type="hidden" name="id" th:value="${book.id}">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" th:value="${book.title}" required>
+            
+            <label for="author">Author</label>
+            <select id="author" name="author" required>
+                <option th:each="author : ${authors}" th:value="${author.name}" th:text="${author.name}"></option>
+            </select>
+            
+            <input type="submit" value="Update Book">
+        </form>
+    </div>
 </body>
 </html>

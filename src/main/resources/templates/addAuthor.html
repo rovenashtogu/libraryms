@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Borrower</title>
+    <title>Add Author</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -11,15 +11,15 @@
     </header>
     <nav>
         <a th:href="@{/}">Home</a>
-        <a th:href="@{/borrowers}">Borrowers</a>
-        <a th:href="@{/borrowers/add}">Add Borrower</a>
+        <a th:href="@{/authors}">Authors</a>
+        <a th:href="@{/authors/add}">Add Author</a>
     </nav>
     <div class="container">
-        <h1>Add Borrower</h1>
-        <form th:action="@{/borrowers/add}" method="post">
+        <h1>Add Author</h1>
+        <form th:action="@{/authors/add}" method="post">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" th:value="${borrower.name}" required>
-            <input type="submit" value="Add Borrower">
+            <input type="text" id="name" name="name" th:value="${author.name}" required>
+            <input type="submit" value="Add Author">
         </form>
     </div>
 </body>

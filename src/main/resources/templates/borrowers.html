@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrowers</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/borrowers}">Borrowers</a>
+        <a th:href="@{/borrowers/add}">Add Borrower</a>
+    </nav>
+    <div class="container">
+        <h1>Borrowers</h1>
+        <a th:href="@{/borrowers/add}" class="button">Add Borrower</a>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="borrower : ${borrowers}">
+                <td th:text="${borrower.id}"></td>
+                <td th:text="${borrower.name}"></td>
+                <td>
+                    <a th:href="@{/borrowers/edit/{id}(id=${borrower.id})}" class="button">Edit</a>
+                    <a th:href="@{/borrowers/delete/{id}(id=${borrower.id})}" class="button">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

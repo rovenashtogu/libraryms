@@ -6,10 +6,30 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Welcome to the Library</h1>
-<a href="/books">Manage Books</a>
-<a href="/authors">Manage Authors</a>
-<a href="/borrowers">Manage Borrowers</a>
-<a href="/books/recent">Recently Viewed Books</a>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/authors}">Authors</a>
+        <a th:href="@{/borrowers}">Borrowers</a>
+    </nav>
+    <div class="container">
+        <h1 th:text="${message}"></h1>
+        <div class="statistics">
+            <h2>Statistics</h2>
+            <p>Total Books: <span th:text="${bookCount}"></span></p>
+            <p>Total Authors: <span th:text="${authorCount}"></span></p>
+            <p>Total Borrowers: <span th:text="${borrowerCount}"></span></p>
+        </div>
+        <div class="links">
+            <h2>Manage</h2>
+            <a href="/books" class="button">Manage Books</a>
+            <a href="/authors" class="button">Manage Authors</a>
+            <a href="/borrowers" class="button">Manage Borrowers</a>
+            <a href="/books/recent" class="button">Recently Viewed Books</a>
+        </div>
+    </div>
 </body>
 </html>
