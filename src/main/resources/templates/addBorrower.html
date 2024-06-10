@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Borrower</title>
+</head>
+<body>
+<h1>Add Borrower</h1>
+<form th:action="@{/borrowers/add}" th:object="${borrower}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}">
+    <br>
+    <button type="submit">Add Borrower</button>
+</form>
+</body>
+</html>
+
