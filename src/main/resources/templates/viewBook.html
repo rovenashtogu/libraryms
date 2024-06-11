@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Author</title>
+    <title th:text="'Book: ' + ${book.title}">Book Details</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -17,13 +17,11 @@
         <a th:href="@{/books/recent}">Recently Viewed Books</a>
     </nav>
     <div class="container">
-        <h1>Edit Author</h1>
-        <form th:action="@{/authors/edit}" method="post">
-            <input type="hidden" name="id" th:value="${author.id}">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" th:value="${author.name}" required>
-            <input type="submit" value="Update Author">
-        </form>
+        <h1 th:text="'Book: ' + ${book.title}"></h1>
+        <p><strong>ID:</strong> <span th:text="${book.id}"></span></p>
+        <p><strong>Title:</strong> <span th:text="${book.title}"></span></p>
+        <p><strong>Author:</strong> <span th:text="${book.author.name}"></span></p>
+        <a th:href="@{/books}" class="button">Back to Books</a>
     </div>
 </body>
 </html>
