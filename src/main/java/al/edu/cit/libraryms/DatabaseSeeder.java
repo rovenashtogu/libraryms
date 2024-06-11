@@ -2,8 +2,10 @@ package al.edu.cit.libraryms;
 
 import al.edu.cit.libraryms.models.Author;
 import al.edu.cit.libraryms.models.Book;
+import al.edu.cit.libraryms.models.Borrower;
 import al.edu.cit.libraryms.services.AuthorService;
 import al.edu.cit.libraryms.services.BookService;
+import al.edu.cit.libraryms.services.BorrowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,8 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private BorrowerService borrowerService;
     @Override
     public void run(String... args) throws Exception {
         seedAuthorsAndBooks();
@@ -51,6 +55,10 @@ public class DatabaseSeeder implements CommandLineRunner {
         book3.setTitle("Adventures of Huckleberry Finn");
         book3.setAuthor(author3);
         bookService.save(book3);
+        
+        Borrower borrower1 = new Borrower();
+        borrower1.setName("Rovena Shtogu");
+        borrowerService.save(borrower1);
     }
 }
 

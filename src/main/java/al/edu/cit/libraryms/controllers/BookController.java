@@ -4,12 +4,11 @@ import al.edu.cit.libraryms.models.Author;
 import al.edu.cit.libraryms.models.Book;
 import al.edu.cit.libraryms.services.AuthorService;
 import al.edu.cit.libraryms.services.BookService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.LinkedList;
+
 import java.util.List;
 
 @Controller
@@ -29,29 +28,13 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String viewBook(@PathVariable Long id, Model model, HttpSession session) {
+    public String viewBook(@PathVariable Long id, Model model) {
         Book book = bookService.findById(id);
         if (book == null) {
             return "redirect:/books";
         }
 
         model.addAttribute("book", book);
-
-        // Update recently viewed books in the session
-        List<Book> recentlyViewedBooks = (List<Book>) session.getAttribute("recentlyViewedBooks");
-        if (recentlyViewedBooks == null) {
-            recentlyViewedBooks = new LinkedList<>();
-        }
-
-        recentlyViewedBooks.remove(book); // Remove the book if it's already in the list
-        recentlyViewedBooks.add(0, book); // Add the book to the start of the list
-
-        if (recentlyViewedBooks.size() > 5) { // Limit the list to 5 books
-            recentlyViewedBooks.remove(recentlyViewedBooks.size() - 1);
-        }
-
-        session.setAttribute("recentlyViewedBooks", recentlyViewedBooks);
-
         return "viewBook";
     }
 
@@ -97,11 +80,8 @@ public class BookController {
     }
 
     @GetMapping("/recent")
-    public String recentBooks(Model model, HttpSession session) {
-        List<Book> recentlyViewedBooks = (List<Book>) session.getAttribute("recentlyViewedBooks");
-        if (recentlyViewedBooks == null) {
-            recentlyViewedBooks = new LinkedList<>();
-        }
+    public String recentBooks(Model model) {
+        List<Book> recentlyViewedBooks = bookService.getRecentlyViewedBooks();
         model.addAttribute("recentlyViewedBooks", recentlyViewedBooks);
         return "recentBooks";
     }
